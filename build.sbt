@@ -2,12 +2,12 @@ enablePlugins(JavaAppPackaging, AshScriptPlugin)
 
 name := "ServerTeleSupp"
 
-version := "0.2"
+version := "0.3"
 
 scalaVersion := "2.12.10"
 
 dockerBaseImage := "openjdk:8-jre-alpine"
-packageName in Docker := "dockerised-servertelesupp"
+packageName in Docker := "servertelesupp"
 
 val AkkaVersion = "2.6.8"
 val AkkaHttpVersion = "10.2.4"

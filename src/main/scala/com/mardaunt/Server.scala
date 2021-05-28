@@ -98,9 +98,9 @@ object Server extends App{
     }
 
 
-    val bindingFuture = Http().newServerAt("localhost", 8080).bind(routes)
+    val bindingFuture = Http().newServerAt("0.0.0.0", 8080).bind(routes)
 
-    println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
+    println(s"Server online at http://localhost:8080/")
 
 }
 
