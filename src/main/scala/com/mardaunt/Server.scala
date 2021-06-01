@@ -18,6 +18,11 @@ import scala.collection.mutable.Queue
 
 object Server extends App{
 
+  //Подключаемся к базе
+  val dateBase = DBobject
+  dateBase.start
+  //dateBase.addRow1
+  dateBase.printTable
   implicit val system = ActorSystem(Behaviors.empty, "service-telesupp")
   // needed for the future flatMap/onComplete in the end
   implicit val executionContext = system.executionContext
@@ -30,7 +35,7 @@ object Server extends App{
   implicit val item = jsonFormat3(Message)
   val queue: Queue[Message] = Queue()
 
-    val route = cors() {
+    val route = {
       path("hello") {
         get {
           complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Привет ёпта</h1>"))

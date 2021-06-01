@@ -17,5 +17,12 @@ libraryDependencies += "com.typesafe.akka" %% "akka-http-spray-json" % AkkaHttpV
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
   "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
-  "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion
+  "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
+
+  "com.typesafe.slick" %% "slick" % "3.3.1",
+  "org.slf4j" % "slf4j-nop" % "1.7.26",
+  "com.typesafe.slick" %% "slick-hikaricp" % "3.3.1",
+  "org.postgresql" % "postgresql" % "42.2.5" //org.postgresql.ds.PGSimpleDataSource dependency
 )
+
+//mainClass in(Compile, run) := Some("com.mardaunt.DBobject")
