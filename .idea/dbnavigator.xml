@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -26,11 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="3db76d1a-3e4b-4ac7-8a09-6564561844dd">
-        <schema name="information_schema" object-types="table, view, sequence, function" />
-        <schema name="pg_catalog" object-types="table, view, sequence, function, column" />
-        <schema name="pg_temp_1" object-types="table, view, sequence, function" />
-        <schema name="pg_toast" object-types="table, view, sequence, function" />
-        <schema name="pg_toast_temp_1" object-types="table, view, sequence, function" />
+        <schema name="pg_catalog" object-types="function" />
         <schema name="public" object-types="table, view, sequence, function, constraint, index, column, dataset trigger" />
       </connection>
     </loaded-nodes>
@@ -45,6 +41,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="3db76d1a-3e4b-4ac7-8a09-6564561844dd" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="3db76d1a-3e4b-4ac7-8a09-6564561844dd" dataset="public.messages" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

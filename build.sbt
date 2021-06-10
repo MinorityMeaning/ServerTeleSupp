@@ -6,15 +6,15 @@ version := "0.3"
 
 scalaVersion := "2.12.10"
 
-dockerBaseImage := "openjdk:8-jre-alpine"
+dockerBaseImage := "openjdk:8-jre-alpine" // Лёгкая версия для Докера
 packageName in Docker := "servertelesupp"
 
 val AkkaVersion = "2.6.8"
 val AkkaHttpVersion = "10.2.4"
 
-libraryDependencies += "ch.megard" %% "akka-http-cors" % "1.1.1"
-libraryDependencies += "com.typesafe.akka" %% "akka-http-spray-json" % AkkaHttpVersion
 libraryDependencies ++= Seq(
+  "ch.megard" %% "akka-http-cors" % "1.1.1",
+  "com.typesafe.akka" %% "akka-http-spray-json" % AkkaHttpVersion,
   "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
   "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
   "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
@@ -24,5 +24,3 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick-hikaricp" % "3.3.1",
   "org.postgresql" % "postgresql" % "42.2.5" //org.postgresql.ds.PGSimpleDataSource dependency
 )
-
-//mainClass in(Compile, run) := Some("com.mardaunt.DBobject")
