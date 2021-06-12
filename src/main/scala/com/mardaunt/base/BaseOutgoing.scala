@@ -1,6 +1,6 @@
 package com.mardaunt.base
 
-import com.mardaunt.Server.UserData
+import com.mardaunt.Server.UserTask
 import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.{Await, Future}
@@ -8,9 +8,9 @@ import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
 
-object BaseOutgoing {
+class BaseOutgoing(var database: Database) {
 
-  val db = Database.forConfig("mydb")
+  private val db = database
 
   // Запись в таблице
   final case class Message(
@@ -23,7 +23,7 @@ object BaseOutgoing {
                           )
 
   // схема таблицы
-  final class OutgoingTable(tag: Tag) extends Table[Message](tag, "messages") {
+  final class OutgoingTable(tag: Tag) extends Table[Message](tag, "outgoing") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def phone = column[String]("phone")
     def message = column[String]("message")
@@ -42,7 +42,7 @@ object BaseOutgoing {
   def printTable: Unit = db.run(outgoing.result).foreach(x => {x.foreach(println)})
 
     //Добавим в базу переданное исполнителю сообщение
-  def addMassage(message: UserData): Unit =
+  def addMassage(message: UserTask): Unit =
     db.run(outgoing += Message(0, message.phone, message.message, message.service, message.user, status = false))
 
     // Возвращает имя отправителя из последнего отправленного сообщения адресату phone
@@ -55,7 +55,6 @@ object BaseOutgoing {
       if (result.value.isEmpty) return "None"
       result.value.get
   }
-
 
 /*
   NoSuchElementException
