@@ -55,6 +55,8 @@ class BaseOutgoing(var database: Database) {
       result.value.get
   }
 
+  def clearTable: Unit = db.run(outgoing.delete)
+
 /*
   NoSuchElementException
   val q3 = for {

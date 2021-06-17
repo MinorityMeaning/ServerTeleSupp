@@ -2,7 +2,9 @@ package com.mardaunt.base
 
 import slick.jdbc.PostgresProfile.api._
 import spray.json.DefaultJsonProtocol._
+
 import scala.collection.mutable.{Map, Queue}
+import scala.concurrent.Future
 
 object Base {
     /** PostgreSQL */

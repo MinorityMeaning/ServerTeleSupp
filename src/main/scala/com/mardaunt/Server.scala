@@ -24,6 +24,8 @@ object Server extends App{
 
   outgoingTable.start
   incomingTable.start
+  //outgoingTable.clearTable
+  //incomingTable.clearTable
   outgoingTable.printTable
   incomingTable.printTable
 
@@ -89,9 +91,11 @@ object Server extends App{
     val clientTukTuk = get {
       path("tuk_tuk" / """\d+""".r){ //Регекс будет извлекать userId
         userId =>
-          if (Receive.checkIncoming(userId))
-                    complete(Receive.getIncoming(userId))
-          else      complete("Nothing")
+          if (Receive.checkIncoming(userId)) {
+                val message = Receive.getIncoming(userId)
+                incomingTable.addMassage(userId, message.phone, message.message)
+                      complete(message)
+          } else      complete("Nothing")
       }
     }
 

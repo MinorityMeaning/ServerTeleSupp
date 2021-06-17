@@ -1,6 +1,8 @@
 package com.mardaunt.base
 
+import akka.protobufv3.internal.Service
 import slick.jdbc.PostgresProfile.api._
+
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class BaseIncoming(var database: Database) {
@@ -36,11 +38,12 @@ class BaseIncoming(var database: Database) {
   def printTable: Unit = db.run(incoming.result).foreach(x => {x.foreach(println)})
 
     //Добавим в базу переданное исполнителю сообщение
-  def addMassage(message: List[String], outgoingTable: BaseOutgoing):Unit =
-    db.run(incoming += Message(0, message(0), //phone
-                                  message(1), //message
-                                  "WhatsApp", //Заглушка!
-                                  outgoingTable.getUserByPhone(message(0)),
-                                  status = false))
+  def addMassage(user: String, phone: String, message: String, service: String = "WhatsApp"):Unit =
+    db.run(incoming += Message(0, phone, //phone
+                                  message, //message
+                                  service, // WhatsApp по умолчанию. Заглушка!!!
+                                  user,
+                                  status = false)) // Зачем? Возможно не нужен.
 
+  def clearTable:Unit = db.run(incoming.delete)
 }
