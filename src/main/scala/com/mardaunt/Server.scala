@@ -95,7 +95,7 @@ object Server extends App{
                 val message = Receive.getIncoming(userId)
                 incomingTable.addMassage(userId, message.phone, message.message)
                       complete(message)
-          } else      complete("Nothing")
+          } else      complete(Empty("Null"))
       }
     }
 
